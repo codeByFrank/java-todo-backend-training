@@ -3,6 +3,7 @@ package de.neuefische.todospringbootjavatraining.controller;
 import de.neuefische.todospringbootjavatraining.dto.TodoDTO;
 import de.neuefische.todospringbootjavatraining.model.Todo;
 import de.neuefische.todospringbootjavatraining.service.TodoService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,5 +26,12 @@ public class TodoController {
     @GetMapping
     public List<Todo> getAllTodos() {
         return todoService.getAllTodos();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Todo> getTodoById(@PathVariable String id) {
+        return todoService.getTodoById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

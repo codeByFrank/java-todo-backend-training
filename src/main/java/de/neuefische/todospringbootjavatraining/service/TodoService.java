@@ -6,6 +6,7 @@ import de.neuefische.todospringbootjavatraining.repository.TodoRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoService {
@@ -28,5 +29,9 @@ public class TodoService {
         );
 
         return todoRepo.save(todo);
+    }
+
+    public Optional<Todo> getTodoById(String id) {
+        return todoRepo.findById(id);
     }
 }
