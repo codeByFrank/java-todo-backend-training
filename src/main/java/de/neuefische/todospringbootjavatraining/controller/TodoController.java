@@ -6,6 +6,7 @@ import de.neuefische.todospringbootjavatraining.service.TodoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -19,8 +20,12 @@ public class TodoController {
     }
 
     @PostMapping
-    public Todo addTodo(@RequestBody TodoDTO todoDTO) {
-        return todoService.addTodo(todoDTO);
+    public ResponseEntity<Todo> addTodo(@RequestBody TodoDTO todoDTO) {
+        Todo createdTodo = todoService.addTodo(todoDTO);
+
+        return ResponseEntity
+                .created(URI.create("/api/todo/" + createdTodo.id()))
+                .body(createdTodo);
     }
 
     @GetMapping
