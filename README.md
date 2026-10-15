@@ -1,20 +1,23 @@
 # Todo Backend
 
-Spring-Boot-Backend für das Neue-Fische-Recap-Projekt „Todo“.
+Ein Spring-Boot-Backend für die Todo-Frontend-Übung bei neue fische. Todos werden in MongoDB gespeichert.
 
-Das Backend stellt eine REST-API für das bereitgestellte Todo-Frontend bereit.
+## API-Endpunkte
 
-## Technologien
+| Methode | Endpunkt | Funktion |
+|---|---|---|
+| `GET` | `/api/todo` | Alle Todos abrufen |
+| `POST` | `/api/todo` | Todo anlegen |
+| `GET` | `/api/todo/{id}` | Todo anhand der ID abrufen |
+| `PUT` | `/api/todo/{id}` | Todo aktualisieren |
+| `DELETE` | `/api/todo/{id}` | Todo löschen |
 
-- Java 25
-- Spring Boot
-- Spring Web
-- Spring Data MongoDB
+Ein Todo enthält eine Beschreibung und einen Status, zum Beispiel `OPEN` oder `IN_PROGRESS`. Die ID wird vom Backend vergeben.
 
-## Starten
+## Beispiel für POST und PUT
 
-Das Projekt kann in IntelliJ über die Main-Klasse gestartet werden. Das Frontend ist anschließend unter [http://localhost:8080](http://localhost:8080) erreichbar.
-
-## Status
-
-Die API-Endpunkte werden im Rahmen des Recap-Projekts schrittweise umgesetzt.
+```json
+{
+  "description": "spazieren gehen",
+  "status": "OPEN"
+}
