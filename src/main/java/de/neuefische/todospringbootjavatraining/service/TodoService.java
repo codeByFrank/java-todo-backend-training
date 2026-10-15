@@ -34,4 +34,18 @@ public class TodoService {
     public Optional<Todo> getTodoById(String id) {
         return todoRepo.findById(id);
     }
+
+    public Optional<Todo> updateTodo(String id, TodoDTO todoDTO) {
+        Optional<Todo> existingTodo = todoRepo.findById(id);
+
+        if (existingTodo.isEmpty()) {
+            return Optional.empty();
+        }
+
+        Todo updatedTodo = existingTodo.get()
+                .withDescription(todoDTO.description())
+                .withStatus(todoDTO.status());
+
+        return Optional.of(todoRepo.save(updatedTodo));
+    }
 }

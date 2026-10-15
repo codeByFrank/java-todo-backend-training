@@ -34,4 +34,14 @@ public class TodoController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Todo> updateTodo(
+            @PathVariable String id,
+            @RequestBody TodoDTO todoDTO
+    ) {
+        return todoService.updateTodo(id, todoDTO)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
