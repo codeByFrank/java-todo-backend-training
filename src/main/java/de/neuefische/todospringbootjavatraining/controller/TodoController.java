@@ -1,10 +1,9 @@
 package de.neuefische.todospringbootjavatraining.controller;
 
+import de.neuefische.todospringbootjavatraining.dto.TodoDTO;
 import de.neuefische.todospringbootjavatraining.model.Todo;
 import de.neuefische.todospringbootjavatraining.service.TodoService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +15,11 @@ public class TodoController {
 
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
+    }
+
+    @PostMapping
+    public Todo addTodo(@RequestBody TodoDTO todoDTO) {
+        return todoService.addTodo(todoDTO);
     }
 
     @GetMapping
